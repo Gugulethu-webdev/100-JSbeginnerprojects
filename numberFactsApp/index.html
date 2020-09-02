@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>numbersFactsApp</title>
+</head>
+
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #app {
+            background-color: rgb(155, 243, 214);
+            text-align: center;
+            width: 60%;
+            height: fit-content;
+            margin: 50px 0 0 20%;
+            padding: 20px 0;
+            overflow: scroll;
+            border-radius: 20px;
+        }
+
+        #numberInput {
+            width: 300px;
+            height: 30px;
+            text-align: center;
+            margin: 30px 0 30px 0;
+            border: rgba(8, 0, 0, 0.876) solid 5px;
+            font-size: large;
+        }
+        #app div{
+            
+            font-size: larger;
+            text-align: center;
+            
+        }
+    </style>
+
+    <h1>welcome to numbers facts.</h1>
+    <div id="app">
+
+        <h2>Put any number in the text field below to see the fact associated with it.</h2>
+        <input id="numberInput" type="number" placeholder="Put any number and see its fact" />
+        <div id="factDisplay">
+            
+           
+        </div>
+    </div>
+    <script>
+        let input = document.querySelector("#numberInput")
+        input.addEventListener("input", fetchFact)
+
+
+        //let fact = document.querySelector("#factDisplay").text
+        function fetchFact() {
+            const number = input.value;
+            
+            if (number !== "")
+                fetch(`http://numbersapi.com/${number}`)
+                .then((response) => response.text())
+                .then(data => document.querySelector("#factDisplay").innerHTML = data)
+                .catch(error => console.log(error))
+            
+
+
+        }
+    </script>
+</body>
+
+</html>
