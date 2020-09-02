@@ -37,6 +37,9 @@
             border: rgba(8, 0, 0, 0.876) solid 5px;
             font-size: large;
         }
+        /* #factDisplay{
+            display:none;
+        } */
         #app div{   
             font-size: larger;
             text-align: center;       
@@ -51,13 +54,12 @@
         </div>
     </div>
     <script>
+        
         let input = document.querySelector("#numberInput")
         input.addEventListener("input", fetchFact)
 
-         //let fact = document.querySelector("#factDisplay").text
         function fetchFact() {
             const number = input.value;
-            
             if(number)
                 fetch(`http://numbersapi.com/${number}`)
                 .then((response) => response.text())
